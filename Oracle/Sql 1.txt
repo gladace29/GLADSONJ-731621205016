@@ -1,0 +1,143 @@
+SQL> create table tbl_employee1(eid number(5),ename varchar2(20),esalary number(5));
+
+Table created.
+
+SQL> desc tbl_employee1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ ESALARY                                            NUMBER(5)
+
+SQL> insert into tbl_employee1 values(101,'Glad',7000);
+
+1 row created.
+
+SQL> insert into tbl_employee1 values(102,'Son',10000);
+
+1 row created.
+
+SQL> insert into tbl_employee1 values(103,'Ace',8000);
+
+1 row created.
+
+SQL> insert into tbl_employee1 values(104,'God',8500);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from tbl_employee1;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Glad                       7000
+       102 Son                       10000
+       103 Ace                        8000
+       104 God                        8500
+
+SQL> select eid,esalary from tbl_employee1;
+
+       EID    ESALARY
+---------- ----------
+       101       7000
+       102      10000
+       103       8000
+       104       8500
+
+SQL> insert into tbl_employee1 values(101,'Ben',5000);
+
+1 row created.
+
+SQL> select eid from tbl_employee1;
+
+       EID
+----------
+       101
+       102
+       103
+       104
+       101
+
+SQL> select distinct eid from tbl_employee1;
+
+       EID
+----------
+       102
+       101
+       104
+       103
+
+SQL> select * from tbl_employee where eid = 101;
+select * from tbl_employee where eid = 101
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from tbl_employee1 where eid = 101;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Glad                       7000
+       101 Ben                        5000
+
+SQL> update tbl_employee1 set esalary=40000 where eid = 102;
+
+1 row updated.
+
+SQL> select * from tbl_employee1;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Glad                       7000
+       102 Son                       40000
+       103 Ace                        8000
+       104 God                        8500
+       101 Ben                        5000
+
+SQL> select * from tbl_employee1 where eid !=101;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       102 Son                       40000
+       103 Ace                        8000
+       104 God                        8500
+
+SQL> select * from tbl_employee1 where eid <>101;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       102 Son                       40000
+       103 Ace                        8000
+       104 God                        8500
+
+SQL> select * from tbl_employee1 where esalary>=3000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Glad                       7000
+       102 Son                       40000
+       103 Ace                        8000
+       104 God                        8500
+       101 Ben                        5000
+
+SQL> update tbl_employee1 set esalary=7000 where eid = 102;
+
+1 row updated.
+
+SQL> update tbl_employee1 set esalary = 7000,ename = 'Ace' where eid = 103;
+
+1 row updated.
+
+SQL> select * from tbl_employee1;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Glad                       7000
+       102 Son                        7000
+       103 Ace                        7000
+       104 God                        8500
+       101 Ben                        5000
